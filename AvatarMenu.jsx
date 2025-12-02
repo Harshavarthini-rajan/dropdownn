@@ -33,7 +33,6 @@ export const AvatarMenu = () => {
         onClick={() => setOpen(!open)}
       />
 
-      {/* Dropdown → Shown only when open = true */}
       {open && (
         <div className="avatar-menu">
           <Link to="/Job-portal/jobseeker/myprofile" className="menu-item">
@@ -64,3 +63,4 @@ export const AvatarMenu = () => {
     </div>
   );
 };
+
