@@ -74,11 +74,8 @@ export const Afterloginlanding = () => {
 
                 <div className="auth-links">
                     <Link to="/Job-portal/jobseeker/myjobs"><img className='header-icons' src={breifcase} alt='My Jobs' /></Link>
-
                     <div><img className='header-icons' src={chat} alt='Messages' /></div>
-
                     <div onClick={() => setShowNotification(!showNotification)}><img className='header-icons' src={newNotificationsCount > 0 ? bell_dot : bell} alt='Notifications' /></div>
-                    
                     <AvatarMenu />
                 </div>
                 <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />   

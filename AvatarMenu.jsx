@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import avatarIcon from "../assets/header_profile.png";
-import "./AvatarMenu.css";
+import profileIcon from "../assets/icon_profile.png";
+import reviewIcon from "../assets/icon_reviews.png";
 import settingsIcon from "../assets/icon_settings.png";
+import helpIcon from "../assets/icon_help.png";
+
+import "./AvatarMenu.css";
 
 export const AvatarMenu = () => {
   const [open, setOpen] = useState(false);
@@ -20,7 +24,8 @@ export const AvatarMenu = () => {
 
   return (
     <div className="avatar-container" ref={menuRef}>
-      
+
+      {/* Avatar Click */}
       <img
         src={avatarIcon}
         alt="avatar"
@@ -28,22 +33,27 @@ export const AvatarMenu = () => {
         onClick={() => setOpen(!open)}
       />
 
+      {/* Dropdown → Shown only when open = true */}
       {open && (
         <div className="avatar-menu">
-          <Link to="/profile" className="menu-item">
-            <span>👤</span> Profile
+          <Link to="/Job-portal/jobseeker/myprofile" className="menu-item">
+            <img src={profileIcon} className="menu-icon" alt="profile" />
+            Profile
           </Link>
 
-          <Link to="/reviews" className="menu-item">
-            <span>⭐</span> My reviews
+          <Link to="/Job-portal/jobseeker/reviews" className="menu-item">
+            <img src={reviewIcon} className="menu-icon" alt="reviews" />
+            My reviews
           </Link>
 
-          <Link to="/settings" className="menu-item">
-            <span>⚙️</span> Settings
+          <Link to="/Job-portal/jobseeker/settings" className="menu-item">
+            <img src={settingsIcon} className="menu-icon" alt="settings" />
+            Settings
           </Link>
 
-          <Link to="/help" className="menu-item">
-            <span>❓</span> Help Centre
+          <Link to="/Job-portal/jobseeker/help" className="menu-item">
+            <img src={helpIcon} className="menu-icon" alt="help" />
+            Help Centre
           </Link>
 
           <div className="menu-divider"></div>
