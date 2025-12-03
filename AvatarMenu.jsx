@@ -1,3 +1,5 @@
+// Harshavarthini
+
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import avatarIcon from "../assets/header_profile.png";
@@ -5,7 +7,6 @@ import profileIcon from "../assets/icon_profile.png";
 import reviewIcon from "../assets/icon_reviews.png";
 import settingsIcon from "../assets/icon_settings.png";
 import helpIcon from "../assets/icon_help.png";
-
 import "./AvatarMenu.css";
 
 export const AvatarMenu = () => {
@@ -25,7 +26,6 @@ export const AvatarMenu = () => {
   return (
     <div className="avatar-container" ref={menuRef}>
 
-      {/* Avatar Click */}
       <img
         src={avatarIcon}
         alt="avatar"
@@ -63,4 +63,3 @@ export const AvatarMenu = () => {
     </div>
   );
 };
-

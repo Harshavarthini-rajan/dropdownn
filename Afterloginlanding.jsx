@@ -80,7 +80,7 @@ export const Afterloginlanding = () => {
                 </div>
                 <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />   
             </header>
-            <JMainsection />
+            <JMainsection />                  
             <section className='Opportunities-section'>
                 <h2 className='Opportunities-title'>Opportunities Just For You</h2>
                 <Opportunities />

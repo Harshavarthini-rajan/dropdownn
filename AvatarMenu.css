@@ -1,3 +1,5 @@
+/* Harshavarthini */
+
 .avatar-container {
   position: relative;
   display: inline-block;
@@ -26,7 +28,6 @@
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
   z-index: 999;
   animation: fadeIn 0.2s ease-out;
-
   box-sizing: border-box;   
   overflow: hidden;         
 }
@@ -41,7 +42,6 @@
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s;
-
   width: 100%;
   box-sizing: border-box;    
 }
