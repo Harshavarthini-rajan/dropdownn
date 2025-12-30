@@ -1,167 +1,91 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./JNotification.css";
-import bell from "../assets/header_bell.png";
-import bell_dot from "../assets/header_bell_dot.png";
+import React, { useState } from 'react'
+import './JNotification.css'
+import bell from '../assets/header_bell.png'
+import bell_dot from '../assets/header_bell_dot.png'
+
+
+const OverflowMenu = ({ notificationId, onMarkAsRead, onDelete }) => {
+    return (
+        <div className="overflow-menu">
+            <button onClick={() => onMarkAsRead(notificationId)} className="menu-item">Mark as read</button>
+            <button onClick={() => onDelete(notificationId)} className="menu-item delete-item">Delete</button>
+        </div>
+    );
+};
 
 export const JNotification = ({ notificationsData, showNotification, setShowNotification }) => {
-    const [notifications, setNotifications] = useState(notificationsData);
+    // State to track which notification's menu is open
     const [activeMenuId, setActiveMenuId] = useState(null);
 
-    const containerRef = useRef(null);
+    const newNotificationsCount = notificationsData.filter(n => n.isNew).length;
 
-    const newNotificationsCount = notifications.filter(n => !n.isRead).length;
-
-    // Toggle 3-dot menu
+    // Handler to toggle the menu for a specific notification
     const toggleMenu = (id, event) => {
+        // Stop event propagation to prevent the notification's click action
         event.stopPropagation();
         setActiveMenuId(activeMenuId === id ? null : id);
     };
 
-    // MARK AS READ
+    // Placeholder handlers for menu actions
     const handleMarkAsRead = (id) => {
-        setNotifications(prev =>
-            prev.map(n =>
-                n.id === id ? { ...n, isRead: true } : n
-            )
-        );
+        console.log(`Marking notification ${id} as read`);
+        // you'd update notificationsData here
         setActiveMenuId(null);
     };
 
-    // MARK AS UNREAD
-    const handleMarkAsUnread = (id) => {
-        setNotifications(prev =>
-            prev.map(n =>
-                n.id === id ? { ...n, isRead: false } : n
-            )
-        );
-        setActiveMenuId(null);
-    };
-
-    // DELETE ONE
     const handleDelete = (id) => {
-        setNotifications(prev => prev.filter(n => n.id !== id));
+        console.log(`Deleting notification ${id}`);
+        // you'd update notificationsData here
         setActiveMenuId(null);
     };
-
-    // CLEAR ALL
-    const handleClearAll = () => {
-        setNotifications([]);
-        setActiveMenuId(null);
-    };
-
-    // CLOSE ON OUTSIDE CLICK
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (
-                containerRef.current &&
-                !containerRef.current.contains(event.target)
-            ) {
-                setShowNotification(false);
-            }
-        };
-
-        if (showNotification) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [showNotification, setShowNotification]);
-
 
     return (
-        <div
-            ref={containerRef}
-            className={`notifications-container ${showNotification ? "show-notification" : "hide-notification"}`}
-        >
-            {/* HEADER */}
+        <div className={`notifications-container ${showNotification ? "show-notification" : "hide-notification"}`}>
             <div className="notifications-header">
-                <div className="notifications-heading-container">
-                    <img
-                        className="notification-header-icons"
-                        src={newNotificationsCount > 0 ? bell_dot : bell}
-                        alt="Notifications"
-                    />
-                    <h2>Notifications</h2>
-                </div>
-                <button onClick={() => setShowNotification(false)} className="notifications-close-btn">
-                    &times;
-                </button>
+                <div className='notifications-heading-container'><img className='notification-header-icons' src={newNotificationsCount > 0 ? bell_dot: bell} alt='Notifications' /><h2>Notifications</h2></div>
+                <button onClick={() => setShowNotification(false)} className="notifications-close-btn">&times;</button>
             </div>
-
-            {/* SUBHEADER */}
+            
             <div className="notifications-subheader">
                 <div>
                     <span>Stay Up to Date</span>
                     {newNotificationsCount > 0 && (
-                        <span className="new-notifications-count">
-                            {newNotificationsCount} New Notifications
-                        </span>
+                        <span className="new-notifications-count">{newNotificationsCount} New Notifications</span>
                     )}
                 </div>
-
-                <button className="clear-all-btn" onClick={handleClearAll}>
-                    Clear all
-                </button>
+                <button className="clear-all-btn">Clear all</button>
             </div>
 
-            {/* NOTIFICATION LIST */}
             <div className="notifications-list">
-                {notifications.map((notification) => (
-                    <div
-                        key={notification.id}
-                        className={notification.isRead ? "notification-old-item" : "notification-new-item"}
+                {notificationsData.map((notification) => (
+                    <div 
+                        key={notification.id} 
+                        className={notification.isNew ? "notification-new-item" : "notification-old-item"}
                     >
                         <div className="notification-content">
                             <p className="notification-text">{notification.text}</p>
                             <p className="notification-time">{notification.time}</p>
                         </div>
-
+                        
                         <div className="more-options-wrapper">
-                            <button
-                                className="more-options-btn"
+                            <button 
+                                className="more-options-btn" 
                                 onClick={(e) => toggleMenu(notification.id, e)}
                             >
                                 ⋮
                             </button>
-
+                            {/* Conditionally render the menu */}
                             {activeMenuId === notification.id && (
-                                <div className="overflow-menu">
-                                    {notification.isRead ? (
-                                        <button
-                                            className="menu-item"
-                                            onClick={() => handleMarkAsUnread(notification.id)}
-                                        >
-                                            Mark as unread
-                                        </button>
-                                    ) : (
-                                        <button
-                                            className="menu-item"
-                                            onClick={() => handleMarkAsRead(notification.id)}
-                                        >
-                                            Mark as read
-                                        </button>
-                                    )}
-
-                                    <button
-                                        onClick={() => handleDelete(notification.id)}
-                                        className="menu-item delete-item"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
+                                <OverflowMenu 
+                                    notificationId={notification.id}
+                                    onMarkAsRead={handleMarkAsRead}
+                                    onDelete={handleDelete}
+                                />
                             )}
                         </div>
                     </div>
                 ))}
-
-                {notifications.length === 0 && (
-                    <p style={{ padding: "20px", textAlign: "center", color: "#777" }}>
-                        No notifications
-                    </p>
-                )}
             </div>
         </div>
     );
-};
+}

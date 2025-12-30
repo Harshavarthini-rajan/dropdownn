@@ -1,0 +1,60 @@
+.subtext{
+    color: #032240;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+
+  .j-sign-up-header {
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 10px;
+  }
+ 
+  .j-sign-up-header-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+  }
+ 
+  .j-sign-up-body {
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+ 
+ 
+  .signup-illustration {
+    display: none;
+  }
+
+  .j-sign-up-header .no-account, 
+  .j-sign-up-header .employer-redirect-link, 
+  .j-sign-up-header .separator {
+    display: none;
+  }
+ 
+  .j-sign-up-header .signup-btn {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+  .j-sign-up-header .j-sign-up-header-links {
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .j-sign-up-form {
+    margin: 0 auto;
+    max-width: 420px;
+    width: 100%;
+    transform: none;
+  }
+ 
+  .j-sign-up-form h2 {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}

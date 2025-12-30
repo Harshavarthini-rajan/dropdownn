@@ -1,0 +1,23 @@
+.choice-section{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 40px 10px 40px;
+}   
+
+.choice-heading {
+    font-size: 40px;
+}
+
+.choice-description {
+    color: gray;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.choice-cards-section{
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+}

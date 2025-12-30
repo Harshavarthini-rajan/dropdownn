@@ -1,22 +1,53 @@
 @media (max-width: 768px) {
   .login-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
     padding: 16px 20px;
+    gap: 10px;
   }
-
+ 
+  .header-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+  }
+ 
   .login-body {
     flex-direction: column;
     padding: 30px 20px;
   }
-
+ 
   .login-illustration {
     display: none;
   }
 
+  .login-header .no-account,
+  .login-header .employer-redirect-link,
+  .login-header .separator {
+    display: none;
+  }
+  .login-header .header-links {
+    width: auto;
+    justify-content: flex-end;
+  }
+ 
+  .login-header .signup-btn {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+ 
   .login-form {
     width: 100%;
     max-width: 420px;
+    margin: 0 auto;
   }
+ 
+  .login-form h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 20px;
+  }
+  
 }
